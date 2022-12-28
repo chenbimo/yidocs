@@ -1,6 +1,6 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import navbar from "./navbar";
-import sidebar from "./sidebar";
+import navbar from "./navbar.js";
+import sidebar from "./sidebar.js";
 import yidocsConfig from "../yidocs.config.js";
 
 export default hopeTheme({

@@ -1,5 +1,5 @@
 import { defineUserConfig } from "vuepress";
-import themeConfig from "./themeConfig";
+import themeConfig from "./themeConfig.js";
 import yidocsConfig from "../yidocs.config.js";
 
 export default defineUserConfig({
