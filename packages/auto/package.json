@@ -18,9 +18,7 @@
         "dev": "vitepress dev",
         "build": "vitepress build"
     },
-    "keywords": [],
     "author": "陈随易 <bimostyle@qq.com>",
     "license": "Apache-2.0",
-    "dependencies": {
-    }
+    "dependencies": {}
 }

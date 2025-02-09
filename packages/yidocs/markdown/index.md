@@ -6,8 +6,8 @@ hero:
     text: 生命不息，折腾不止。
     tagline: 何以解忧，唯有代码，不忘初心，方得始终。
     image:
-        src: /logo5.png
-        alt: VitePress
+        src: /logo.jpg
+        alt: 陈随易
     actions:
         - theme: brand
           text: 微信：chensuiyime
@@ -30,7 +30,5 @@ features:
     - icon: 🚀
       title: 开源项目
       details: 自2019年持续维护、更新、完善至今
-      link: https://github.com/chenbimo/yicode
+      link: https://github.com/chenbimo
 ---
-
-<homeMore></homeMore>

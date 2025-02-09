@@ -6,8 +6,8 @@ const { sideBar, navBar } = docsAuto();
 export default defineConfig({
     layout: 'home',
     base: '/',
-    title: '易文档',
-    description: '创造美好生活，需要美好商业。',
+    title: '陈随易',
+    description: '何以解忧，唯有代码。',
     lastUpdated: true,
     cleanUrls: false,
     outDir: './dist',
@@ -23,7 +23,7 @@ export default defineConfig({
                 content: ''
             }
         ],
-        ['meta', { name: 'author', content: '易文档' }],
+        ['meta', { name: 'author', content: '陈随易' }],
         [
             'link',
             {
@@ -35,19 +35,18 @@ export default defineConfig({
     themeConfig: {
         logo: '/logo.jpg',
         lastUpdatedText: '更新时间',
-        siteTitle: '易文档',
+        siteTitle: '陈随易',
         outline: 'deep',
         outlineTitle: '大纲',
         socialLinks: [
             {
                 icon: 'github',
-                link: 'https://github.com/vuejs/vitepress'
-            },
-            { icon: 'twitter', link: '...' }
+                link: 'https://github.com/chenbimo'
+            }
         ],
         footer: {
-            message: '创造美好生活，需要美好商业。',
-            copyright: 'Copyright © present 易文档'
+            message: '何以解忧，唯有代码。',
+            copyright: 'Copyright © present 陈随易'
         },
         docFooter: {
             prev: '上一页',
