@@ -1,0 +1,26 @@
+{
+    "name": "@yidocs/vip",
+    "version": "1.0.0",
+    "description": "yidocs(易文档) - 会员隐藏内容",
+    "type": "module",
+    "main": "index.js",
+    "private": false,
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
+    "keywords": [
+        "fastify",
+        "nodejs",
+        "api"
+    ],
+    "scripts": {
+        "dev": "vitepress dev",
+        "build": "vitepress build"
+    },
+    "keywords": [],
+    "author": "陈随易 <bimostyle@qq.com>",
+    "license": "Apache-2.0",
+    "dependencies": {
+    }
+}
