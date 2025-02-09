@@ -29,19 +29,19 @@
 如果你使用的是 `npm`：
 
 ```bash
-npx dloo -t yidocs
+npx dloo -n yidocs
 ```
 
 如果你使用的是 `pnpm`：
 
 ```bash
-pnpm dlx dloo -t yidocs
+pnpm dlx dloo -n yidocs
 ```
 
 下载流程如下图。
 
 ```bash
-D:\codes\chensuiyi\dloo>pnpm dlx dloo.js -t yidocs
+D:\codes\chensuiyi\dloo>pnpm dlx dloo.js -n yidocs
 ℹ 开发者：陈随易（https://chensuiyi.me）
 -----------------------------------------
 ℹ yidocs 接口项目开发模板下载中...
