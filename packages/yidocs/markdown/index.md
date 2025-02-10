@@ -32,3 +32,5 @@ features:
       details: 自2019年持续维护、更新、完善至今
       link: https://github.com/chenbimo
 ---
+
+<homeMore></homeMore>
