@@ -135,14 +135,13 @@ const setNavAndSide = () => {
     const navObjs = {};
     for (let i = 0; i < files.length; i++) {
         const item = files[i];
-        // console.log('🔥[ item ]-129', item);
         // 必须是以 .md 结尾的文件
         if (item.isFile() === false || item.name.endsWith('.md') === false) continue;
         const fileName = item.parentPath.replace(/[\\\/]+/gi, '/') + '/' + item.name;
         const fileEnd = fileName.replace(/^.+\/markdown\//gi, '');
         const fileSplit = fileEnd.split('/').filter((name) => name);
         // 不能是 public 目录中的文件
-        if (fileSplit.length <= 1 || fileSplit[0] === 'public') continue;
+        if (fileSplit[0] === 'public' || fileSplit[0] === 'index.md') continue;
         // 目录层级必须在 2-3-4 级
         if (fileSplit.length > 4) {
             console.log(`文件${fileEnd} 请按照 【分类-文章】 或者 【分类-[项目]-目录-文章】 的层级方式组织文件`);
@@ -159,6 +158,18 @@ const setNavAndSide = () => {
         }
         if (isNameAllPass === false) continue;
 
+        if (fileSplit.length === 1) {
+            const [firstSplit] = fileSplit;
+            const firstNumber = Number(firstSplit.slice(0, firstSplit.indexOf('-')));
+            const navName = firstSplit.replace(/^\d+-/gi, '').replace('.md', '');
+            navObjs[`/${firstSplit}/`] = {
+                order: firstNumber,
+                text: navName,
+                link: fileEnd.replace('.md', '')
+            };
+            continue;
+        }
+
         const [firstSplit, secondSplit] = fileSplit;
         const lastSplit = fileSplit[fileSplit.length - 1];
 
@@ -166,15 +177,38 @@ const setNavAndSide = () => {
         const firstNumber = Number(firstSplit.slice(0, firstSplit.indexOf('-')));
         const secondNumber = Number(secondSplit.slice(0, secondSplit.indexOf('-')));
         const navName = firstSplit.replace(/^\d+-/gi, '');
-        const linkName = secondSplit.replace(/^\d+-/gi, '');
+        const linkName = secondSplit.replace(/^\d+-/gi, '').replace('.md', '');
         const dirPath = `/${firstSplit}/${secondSplit}/`;
 
         if (fileSplit.length === 2) {
-            navObjs[firstSplit] = {
-                order: firstNumber,
-                text: navName,
-                link: fileEnd.replace('.md', '')
-            };
+            if (navObjs[`/${firstSplit}/`] === undefined) {
+                navObjs[`/${firstSplit}/`] = {
+                    order: firstNumber,
+                    text: navName,
+                    link: fileEnd.replace('.md', '')
+                };
+            }
+            if (sideObjs[`/${firstSplit}/`] === undefined) {
+                sideObjs[`/${firstSplit}/`] = {
+                    id: dirPath,
+                    pid: '',
+                    text: `📁 ${firstSplit}`,
+                    collapsed: false,
+                    items: [
+                        {
+                            order: secondNumber,
+                            text: `📄 ${linkName}`,
+                            link: '/' + fileEnd
+                        }
+                    ]
+                };
+            } else {
+                sideObjs[`/${firstSplit}/`].items.push({
+                    order: secondNumber,
+                    text: `📄 ${linkName}`,
+                    link: '/' + fileEnd
+                });
+            }
         } else {
             // 设置导航下的擦边蓝
             if (sideObjs[dirPath] === undefined) {
