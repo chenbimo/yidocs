@@ -28,7 +28,7 @@ importers:
   packages/yidocs:
     dependencies:
       '@yidocs/auto':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../auto
       vitepress:
         specifier: ^1.6.3
