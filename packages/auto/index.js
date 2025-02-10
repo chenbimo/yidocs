@@ -33,7 +33,18 @@ const autoSideBar = (dirPath) => {
         if (item.isFile() === false || item.name.endsWith('.md') === false) continue;
         const fileName = (item.parentPath.replace(/[\\\/]+/gi, '/') + '/' + item.name).replace('//', '/');
         const fileEnd = fileName.replace(/^.+\/markdown\//gi, '/').replace(dirPath, '');
-        const fileArrs = fileEnd.split('/').map((text) => {
+        const fileSplit = fileEnd.split('/').filter((name) => name);
+        let isNameAllPass = true;
+        // 文件或目录必须以 数字-名称组成
+        for (let i = 0; i < fileSplit.length; i++) {
+            const name = fileSplit[i];
+            if (/^[1-9][0-9]*-/.test(name) === false) {
+                isNameAllPass = false;
+                continue;
+            }
+        }
+        if (isNameAllPass === false) continue;
+        const fileArrs = fileSplit.map((text) => {
             const order = Number(text.slice(0, text.indexOf('-')));
             const name = text.slice(text.indexOf('-') + 1);
             return {
