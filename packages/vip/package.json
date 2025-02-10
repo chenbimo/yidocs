@@ -1,6 +1,6 @@
 {
     "name": "@yidocs/vip",
-    "version": "1.0.0",
+    "version": "2.1.0",
     "description": "yidocs(易文档) - 会员隐藏内容",
     "type": "module",
     "main": "index.js",
@@ -20,5 +20,5 @@
     },
     "author": "陈随易 <bimostyle@qq.com>",
     "license": "Apache-2.0",
-    "dependencies": {}
+    "gitHead": "4dbc2d2c7023472d190a97e096250c7d855a6ed3"
 }
