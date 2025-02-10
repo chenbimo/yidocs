@@ -14,6 +14,7 @@
     "scripts": {
         "r": "lerna publish"
     },
+    "license": "Apache-2.0",
     "author": "chensuiyi <bimostyle@qq.com>",
     "homepage": "https://chensuiyi.me",
     "devDependencies": {

@@ -8,13 +8,11 @@
 
 [github - https://github.com/chenbimo/yidocs](https://github.com/chenbimo/yidocs)
 
-### 作者介绍
+### 效果演示
+
+笔者的个人文章就是基于`yidocs`搭建的，点击查看即可。
 
 [前端之虎陈随易 https://chensuiyi.me](https://chensuiyi.me)
-
-### 文档教程
-
-请到 [前端之虎陈随易 https://chensuiyi.me](https://chensuiyi.me) 网站查看。
 
 ### 功能特点
 
@@ -22,9 +20,62 @@
 - ✅ 无需手动配置，自动生成侧边栏。
 - ✅ 良好的文档组织，顺序确定，无错乱。
 
-### 使用方式
+### 为什么使用 yidocs
 
-**下载 funpiba 接口开发模板**
+`yidocs` 开箱即用，并且无需手动配置 `侧边栏` 和 `导航栏`。
+
+如果我们使用 `vitepress`，需要的配置如下：
+
+```javascript
+export default {
+    themeConfig: {
+        sidebar: {
+            '/guide/': [
+                {
+                    text: 'Guide',
+                    items: [
+                        { text: 'Index', link: '/guide/' },
+                        { text: 'One', link: '/guide/one' },
+                        { text: 'Two', link: '/guide/two' }
+                    ]
+                }
+            ],
+
+            '/config/': [
+                {
+                    text: 'Config',
+                    items: [
+                        { text: 'Index', link: '/config/' },
+                        { text: 'Three', link: '/config/three' },
+                        { text: 'Four', link: '/config/four' }
+                    ]
+                }
+            ]
+        }
+    }
+};
+```
+
+使用 `yidocs`，配置如下即可：
+
+```javascript
+import { docsAuto } from '@yidocs/auto';
+let { sideBar, navBar } = docsAuto();
+export default {
+    themeConfig: {
+        sidebar: sideBar,
+        nav: navBar
+    }
+};
+```
+
+最苦、最累、最麻烦的问题，交给笔者。
+
+最好、最强、最方便的功能，留给你们。
+
+### 下载使用
+
+**下载 yidocs 接口开发模板**
 
 如果你使用的是 `npm`：
 
@@ -49,6 +100,110 @@ D:\codes\chensuiyi\dloo>pnpm dlx dloo.js -n yidocs
 ```
 
 将`.dloo` 目录中的`yidocs`模板全部复制到当前目录下，执行`pnpm install`安装命令，然后执行`pnpm run dev`命令查看效果。
+
+## 设计理念
+
+当然，要想如此方便地使用 `yidocs`，一些必要的约定还是要遵守的。
+
+```bash
+├───📁 markdown/
+│   ├───📁 1-开源/
+│   │   ├───📁 1-yite-cli/
+│   │   │   ├───📁 1-基本简介/
+│   │   │   │   ├───📄 1-基本介绍.md
+│   │   │   │   ├───📄 2-快速体验.md
+│   │   │   │   ├───📄 3-项目结构.md
+│   │   │   │   └───📄 4-视频入门.md
+```
+
+**命名约定**
+
+所有文件和目录，都要以 `数字-` 开头
+
+如上所示，任何目录和文章，均以 `数字` + `短横线` 开头，作用就是用于 `文章` 和 `目录` 的排序。
+
+如果没有人为的 `数字标识`，文档的目录和排序有可能是乱套的，所以此为 `yidocs` 的必要要求之一。
+
+**层级约定**
+
+一共有`2-3-4`三种结构层级。
+
+```bash
+├───📁 markdown
+│   ├───📁 1-一级结构
+│   │   └───📄 1-文章.md
+│   ├───📁 2-二级结构
+│   │   ├───📁 1-目录
+│   │   │   └───📄 1-文章.md
+│   ├───📁 2-三级结构
+│   │   ├───📁 1-目录
+│   │   │   ├───📁 1-目录
+│   │   │   │   └───📄 1-文章.md
+
+```
+
+![一级结构](https://static.yicode.tech/images/202502/20250210102953.png)
+
+一级结构在顶部导航没有`箭头`，点击即会展示该文章内容，适合`目录-文章`的模式，比如`关于我`。
+
+![二级结构](https://static.yicode.tech/images/202502/20250210103037.png)
+
+二级结构类似`下拉列表`，需要选择其`二级菜单`才会显示对应的文章内容，适合`分类-目录-文章`的模式，比如说明书。
+
+![三级结构](https://static.yicode.tech/images/202502/20250210103138.png)
+
+三级结构会把目录下的所有目录展示在侧边栏，适合`分类-项目-目录-文章`的模式，比如复杂的开源手册。
+
+这就是 `yidocs` 的文件组织结构。
+
+不满足此规则的文件，在编译的控制台将会进行提示，且对应文件将不会在文档中显示。
+
+建议不想显示的目录或文章，使用`下划线+名称`的模式命名，这样所有的隐藏目录或文件都会在目录的顶部展示，比如`_这是隐藏文件.md`。
+
+### 插件扩展
+
+`yidocs` 提供了实用的插件，可以一键安装使用。
+
+#### 会员内容隐藏插件 - @yicocs/vip
+
+![插件效果](https://static.yicode.tech/images/202502/20250210104134.png)
+
+**安装：**
+
+```bash
+pnpm add @yidocs/vip
+```
+
+**配置：**
+
+```js
+import markdownItVip from '@yidocs/vip';
+export default {
+    markdown: {
+        theme: 'one-dark-pro',
+        lineNumbers: true,
+        config: (md) => {
+            md.use(markdownItVip);
+        }
+    }
+};
+```
+
+**使用：**
+
+格式如下：
+
+开头：`<!--vipStart--标题-->`。
+
+结尾：`<!--vipEnd-->`。
+
+```markdown
+<!--vipStart--全文阅读地址👉https://sourl.cn/r6DNRy-->
+
+这是会员隐藏内容
+
+<!--vipEnd-->
+```
 
 ### 版权说明
 
